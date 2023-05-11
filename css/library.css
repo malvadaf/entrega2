@@ -1,0 +1,161 @@
+* {
+    font-family: sans-serif;
+}
+
+h1 {
+    font-size: 3em;
+    text-align: center;
+}
+
+h2 {
+    font-size: 2em;
+    text-align: center;
+}
+
+header {
+    margin: 3% 3% 0 3%;
+    padding: 20px 0;
+    background-color: #fff;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+.logo {
+    margin: auto;
+    display: block;
+    width: 50px;
+}
+
+.logo:hover {
+    transform: scale(1.5);
+    background-color: green;
+    border-radius: 100%;
+}
+
+body {
+    background-image: url('../images/background.jpg');
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+main {
+    margin: 2% 3% 0 3%;
+    padding: 1% 1%;
+    background-color: #fff;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+@media (max-width: 600px) {
+    main {
+        margin: 0 auto;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        margin-top: 3%;
+        padding-top: 10%;
+        padding-bottom: 10%;
+    }
+}
+
+footer {
+    margin: 0 auto;
+    padding: 1% 3%;
+    background-color: #fff;
+    border-radius: 20px;
+    opacity: 0.9;
+    font-size: 1em;
+    text-align: center;
+    position: absolute;
+    left: 3%;
+    right: 3%;
+    margin-top: 2%;
+}
+
+@media (max-width: 600px) {
+    footer {
+        position: relative;
+        top: 1em;
+        left: 1%;
+        right: 1%;
+    }
+}
+
+.summaryContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+.summaryContainer>img {
+    margin: 2%;
+    width: 25%;
+}
+
+.summaryContainer>img:hover {
+    transform: scale(1.1);
+}
+
+.summaryContainer>.summary {
+    margin: 3%;
+    width: 65%;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+@media (max-width: 600px) {
+    .summaryContainer {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .summaryContainer>img {
+        width: 50%;
+    }
+
+    .summaryContainer>.summary {
+        width: 90%;
+    }
+}
+
+#bookStatus {
+    font-size: 2em;
+}
+
+input[type="button"] {
+    font-size: 15px;
+    height: 50px;
+    border-radius: 15px;
+    padding: 0 30px 0 30px;
+    margin-top: 3em;
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+input[type="button"]:hover {
+    transform: scale(1.1);
+    background-color: #fff;
+    color: #000;
+    box-shadow: 5px 2px 2px black;
+}
+
+.buttonContainer {
+    display: flex;
+}
+
+.button-left {
+    margin-right: 10px;
+}
+
+.button-right {
+    margin-left: 10px;
+}

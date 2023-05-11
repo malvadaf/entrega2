@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/login.css">
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <title>Te damos la bienvenida a la biblioteca IRON</title>
+</head>
+
+<body>
+    <main>
+        <div class="logoContainer">
+            <img class="logo" src="images/logo.png" alt="Logo de la biblioteca">
+        </div>
+        <div class="loginContainer">
+            <h1 id="welcomeText">Acceso a la plataforma de libros de la Biblioteca IRON</h1>
+            <form id="loginForm">
+                <input type="text" placeholder="Nombre" id="loginName">
+                <div id="loginToggle" class="toggle">
+                    <input type="checkbox" id="toggle-checkbox">
+                    <span></span>
+                    <label id="label-checkbox" for="toggle-checkbox">No soy socio/a</label>
+                </div>
+                <input type="email" placeholder="Email de asociado" id="loginEmail">
+                <input type="button" value="Entrar" onclick="login()">
+            </form>
+        </div>
+    </main>
+    <footer>
+        Proyecto realizado por Marta Alvarado para IRONHack
+    </footer>
+    <script>
+        if (this.checked) {
+            document.getElementById('label-checkbox').textContent = 'Soy socio/a';
+            document.getElementById('loginEmail').style.display = 'block';
+        } else {
+            document.getElementById('label-checkbox').textContent = 'No soy socio/a';
+            document.getElementById('loginEmail').style.display = 'none';
+        }
+        document.getElementById('toggle-checkbox').addEventListener('change', function () {
+            if (this.checked) {
+                document.getElementById('label-checkbox').textContent = 'Soy socio/a';
+                document.getElementById('loginEmail').style.display = 'block';
+            } else {
+                document.getElementById('label-checkbox').textContent = 'No soy socio/a';
+                document.getElementById('loginEmail').style.display = 'none';
+            }
+        });
+
+        document.getElementById('loginToggle').addEventListener('click', function () {
+            document.getElementById('toggle-checkbox').checked = !document.getElementById('toggle-checkbox').checked;
+            document.getElementById('toggle-checkbox').dispatchEvent(new Event('change'));
+        });
+
+        document.getElementById('loginName').addEventListener('blur', function () {
+            if (document.getElementById('loginName').value != "") {
+                this.style.borderColor = "green";
+            } else {
+                this.style.borderColor = "red";
+            }
+        });
+
+        document.getElementById('loginEmail').addEventListener('blur', function () {
+            if (document.getElementById('loginEmail').value != "") {
+                this.style.borderColor = "green";
+            } else {
+                this.style.borderColor = "red";
+            }
+        });
+
+        function login() {
+            if (document.getElementById('toggle-checkbox').checked && document.getElementById("loginEmail").value == "") {
+                alert("Has dicho que eres socio/a de la biblioteca pero no has indicado tu email. Rellena ese campo por favor.");
+            } else {
+                if (document.getElementById("loginName").value == "") {
+                    alert("No has dicho cómo te llamas. Rellena este campo por favor.");
+                } else {
+                    const name = document.getElementById("loginName").value;
+                    document.getElementById("welcomeText").innerText = '¡Hola ' + name + '! Te damos la bienvenida a la Biblioteca IRON';
+                    setTimeout(() => {
+                        window.location.href = "library.html";
+                    }, 3000);
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

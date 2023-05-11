@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="css/library.css">
+    <link rel="icon" type="image/png" href="images/logo.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta charset="UTF-8">
+    <title>Te damos la bienvenida a la biblioteca IRON</title>
+</head>
+
+<body>
+    <header>
+        <h1>Sección de libros disponibles en la biblioteca IRON</h1>
+        <img class="logo" src="images/logo.png" alt="Logo de la biblioteca">
+    </header>
+    <main>
+        <div class="summaryContainer">
+            <img class="image" id="bookImage" src="" alt="" />
+            <div class="summary">
+                <h2 id="bookTitle"></h2>
+                <h4 id="bookAuthor"></h4>
+                <p id="bookSummary"></p>
+                <span id="bookStatus"></span>
+                <input type="button" id="reserveButton" value="Reservar libro" onclick="reserve()">
+                <div class="buttonContainer">
+                    <input type="button" value="<" class="button-left" onclick="left()">
+                    <input type="button" value=">" class="button-right" onclick="right()">
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        Proyecto realizado por Marta Alvarado para IRONHack
+    </footer>
+    <script>
+        let books = [
+            {
+                title: "Ella y su gato",
+                author: "Maroto Shinkai - Naruki Nagakawa",
+                summary: "En un lluvioso día de primavera, Miyu, una chica que vive sola en la gran ciudad, encuentra un gato acurrucado en una caja de cartón y se lo lleva a casa. A ella se le da mal expresar lo que siente. Él observa de cerca sus torpezas y rutinas. Cada uno en su universo propio, ambos dan el salto al mundo exterior, donde encontrarán a otros con distintos problemas, unas veces grandes y otras, pequeños. Reina, una chica que no reúne el suficiente valor para presentarse a unas pruebas de acceso a la escuela de Bellas Artes, y Aoi otra joven que vive atormentada por la muerte de su mejor amiga… Mientras sus gatos las observan con cariño, entre todos nacerá un vínculo especial, lleno de emociones. Ella y su gato supone la novelización de una de las primeras obras del prestigioso director de animación Makoto Shinkai. Son cuatro historias engarzadas que giran en torno a gatos recogidos de la calle, repletas del encanto y la belleza del mundo de este gran cineasta contemporáneo.",
+                cover: "images/ellaysugato.jpg",
+                reserved: false
+            },
+            {
+                title: "La casa torcida",
+                author: "Agatha Christie",
+                summary: "Uno de los finales más sorprendentes de todas las novelas de Agatha Christie. Tres generaciones de la familia del multimillonario griego Aristide Leonides conviven en una curiosa mansión de estructura inclinada; entre ellas, la joven y hermosa segunda esposa del patriarca, y Sophia, su más avispada nieta, cuyo futuro suegro es comisario de policía. Cuando Aristide aparece muerto, probablemente envenenado, las sospechas recaerán sobre todos los miembros de la familia. Sophia exigirá entonces a Charles, su prometido, que haga lo posible por esclarecer el asesinato, ya que no podrán casarse hasta que el asunto se resuelva. El inspector jefe de Scotland Yard Taverner se hará cargo de un caso en el que ninguno de los sospechosos tiene coartada.",
+                cover: "images/lacasatorcida.jpg",
+                reserved: true
+            },
+            {
+                title: "Vozdevieja",
+                author: "Elisa Victoria",
+                summary: "Tiene nueve años. Su nombre es Marina, pero en el cole la llaman Vozdevieja. Este verano en Sevilla, el primero después de la Expo del 92, es tan largo y tan seco que ella no sabe si llorar o reír. Si quiere que todo cambie o que todo siga igual. Porque aún juega con muñecas Chabel pero ya mira revistas para adultos. Porque su madre está enferma y ella ya se imagina en un convento rodeada de huerfanitas. Porque todo el mundo, también su padre, insiste en desaparecer. Porque su mejor amiga es su abuela, quien le guisa, la peina, se deja cortar esas uñas como alacranes, le cuenta su amor por Felipe González, le dice tranquila, le enseña nuevos tacos, le cose vestidos de flores. Luego sale y esos vestidos le molestan tanto como si fueran de lija. Y aun así, Marina siempre tiene hambre: de vida, y de filetes empanados.",
+                cover: "images/vozdevieja.jpg",
+                reserved: false
+            }
+        ];
+        let i = 0;
+
+        function loadBook(b) {
+            document.getElementById("bookImage").src = books[b].cover;
+            document.getElementById("bookImage").alt = "Portada del libro " + books[b].title;
+            document.getElementById("bookTitle").innerText = books[b].title;
+            document.getElementById("bookAuthor").innerText = books[b].author;
+            document.getElementById("bookSummary").innerText = books[b].summary;
+            if (books[b].reserved) {
+                document.getElementById("bookStatus").innerText = "Libro reservado";
+                document.getElementById("bookStatus").style.color = "red";
+            } else {
+                document.getElementById("bookStatus").innerText = "Libro no reservado";
+                document.getElementById("bookStatus").style.color = "black";
+            }
+        }
+
+        function left() {
+            i = i - 1;
+            if (i < 0) { i = books.length - 1; }
+            loadBook(i);
+        }
+        function right() {
+            i = i + 1;
+            if (i > 2) { i = 0; }
+            loadBook(i);
+        }
+        function reserve() {
+            if (books[i].reserved) {
+                alert("Este libro ya está reservado. Espera a que lo devuelvan para poder leerlo.");
+            } else {
+                books[i].reserved = true;
+                loadBook(i);
+            }
+        }
+
+        loadBook(0);
+
+        document.getElementById('bookImage').addEventListener('click', function () {
+            if (!this.style.borderRadius || this.style.borderRadius == "0px") {
+                this.style.borderRadius = "15px";
+            } else {
+                this.style.borderRadius = "0px";
+            }
+        });
+    </script>
+</body>
+
+</html>
